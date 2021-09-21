@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Stick+No+Bills&display=swap");
+
+:root {
+  --background-color: #0d1317;
+  --light-color: #c4d6b0;
+  --dark-color: #697564;
+  --blue-mnemis: #007ea7;
+  --yellow-mnemis: #f18f01;
+  --red-mnemis: #d1495b;
+  --green-mnemis: #00cc66;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: "Stick No Bills", sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--light-color);
+}
+
+.header {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__title {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.header__button {
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 8px;
+  transition: 300ms;
+}
+
+.header__button:hover {
+  background-color: var(--dark-color);
+  cursor: pointer;
+}
+
+.header__score {
+  display: none;
+  height: 33px;
+}
+
+.mnemis {
+  display: grid;
+  grid-template-areas:
+    "verde vermelho"
+    "amarelo azul";
+  grid-gap: 10px;
+  background-color: var(--background-color);
+  border-radius: 100%;
+  width: 500px;
+  height: 500px;
+  margin-bottom: 100px;
+}
+
+.mnemis__item--blue {
+  grid-area: azul;
+  background-color: var(--blue-mnemis);
+  border-bottom-right-radius: 100%;
+  cursor: pointer;
+}
+
+.mnemis__item--yellow {
+  grid-area: amarelo;
+  background-color: var(--yellow-mnemis);
+  border-bottom-left-radius: 100%;
+  cursor: pointer;
+}
+
+.mnemis__item--red {
+  grid-area: vermelho;
+  background-color: var(--red-mnemis);
+  border-top-right-radius: 100%;
+  cursor: pointer;
+}
+
+.mnemis__item--green {
+  grid-area: verde;
+  background-color: var(--green-mnemis);
+  border-top-left-radius: 100%;
+  cursor: pointer;
+}
+
+.is-over {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.is-selected {
+  filter: brightness(170%);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.footer__paragraph {
+  font-size: 14px;
+}
+
+.footer__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
