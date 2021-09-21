@@ -2,14 +2,12 @@ let order = [];
 let clickedOrder = [];
 let score = 0;
 
-// ID das cores: 0 - verde; 1 - vermelho; 2 - amarelo; 3 - azul
-
 // Seleção dos elementos HTML
 const blue = document.querySelector(".mnemis__item--blue");
 const red = document.querySelector(".mnemis__item--red");
 const green = document.querySelector(".mnemis__item--green");
 const yellow = document.querySelector(".mnemis__item--yellow");
-const button = document.querySelector(".header__button");
+const navButtons = document.querySelector(".header__nav");
 const scoreText = document.querySelector(".header__score");
 
 // Cria ordem aleatória de números
@@ -38,6 +36,7 @@ const lightColor = (element, number) => {
 };
 
 // Checa se os botões clicados são os mesmos da ordem gerada
+// No caso de erro, chama a função gameOver. Se não, nextLevel.
 const checkOrder = () => {
   for (const i in clickedOrder) {
     if (clickedOrder[i] != order[i]) {
@@ -51,12 +50,14 @@ const checkOrder = () => {
   }
 };
 
-// Função para o clique do usuário
+// Função para receber os cliques do usuário
 const click = (color) => {
   // Condicional para retirar o clique caso o jogo não esteja ativo
   const isOverStatus = green.classList.contains("is-over");
   if (!isOverStatus) {
     clickedOrder[clickedOrder.length] = color;
+
+    // Acende e apaga as cores clicadas pelo usuário
     createColorElement(color).classList.add("is-selected");
 
     setTimeout(() => {
@@ -67,6 +68,7 @@ const click = (color) => {
 };
 
 // Função que retorna a cor de acordo com o número gerado
+// ID das cores: 0 - verde; 1 - vermelho; 2 - amarelo; 3 - azul
 const createColorElement = (color) => {
   if (color === 0) {
     return green;
@@ -79,38 +81,44 @@ const createColorElement = (color) => {
   }
 };
 
-// Função para próximo nível do jogo
+// Função que chama o próximo nível do jogo
 const nextLevel = () => {
   scoreText.innerHTML = `Pontuação: ${score}`;
+
   setTimeout(() => {
     score++;
     shuffleOrder();
-  }, 1500);
+  }, 1000);
 };
 
 // Função para game over
 const gameOver = () => {
-  if (score === 0) alert(`Pontuação: 0\nVocê perdeu!`);
-  else alert(`Pontuação: ${score - 1}\nVocê perdeu!`);
+  if (score === 0) alert(`Você perdeu!\nPontuação: 0`);
+  else alert(`Você perdeu!\nPontuação: ${score - 1}`);
 
-  button.style.display = "block";
+  // Troca a pontuação pelos botões novamente
+  navButtons.style.display = "block";
   scoreText.style.display = "none";
 
+  // "Desliga" as cores
   notStarted();
 };
 
 // Função de início do jogo
 const playGame = () => {
+  // Zera as variáveis
   order = [];
   clickedOrder = [];
   score = 0;
 
+  // "Liga" as cores do jogo
   green.classList.remove("is-over");
   red.classList.remove("is-over");
   yellow.classList.remove("is-over");
   blue.classList.remove("is-over");
 
-  button.style.display = "none";
+  // Troca os botões pela pontuação
+  navButtons.style.display = "none";
   scoreText.style.display = "block";
 
   nextLevel();
@@ -122,7 +130,7 @@ red.onclick = () => click(1);
 yellow.onclick = () => click(2);
 blue.onclick = () => click(3);
 
-// Função que desliga o jogo
+// Função que "desliga" o jogo
 const notStarted = () => {
   green.classList.add("is-over");
   red.classList.add("is-over");

@@ -6,29 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
-    <link rel="stylesheet" href="./styles/style.css" />
     <link
       rel="stylesheet"
-      type="text/css"
-      href="./styles/loading-bar.min.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="style.css" />
 
     <title>Mnemis</title>
   </head>
   <body>
     <header class="header">
       <h1 class="header__title">MNEMIS</h1>
-      <button type="button" class="header__button" onclick="playGame()">
-        JOGAR
-      </button>
+      <nav class="header__nav">
+        <button type="button" class="header__button" onclick="playGame()">
+          JOGAR
+        </button>
+        <button
+          type="button"
+          class="header__button"
+          data-toggle="modal"
+          data-target="#modal-mensagem"
+        >
+          COMO JOGAR
+        </button>
+      </nav>
       <p class="header__score">Pontuação: 0</p>
     </header>
+
     <main class="mnemis">
-      <section class="mnemis__item--blue"></section>
-      <section class="mnemis__item--yellow"></section>
-      <section class="mnemis__item--red"></section>
       <section class="mnemis__item--green"></section>
+      <section class="mnemis__item--red"></section>
+      <section class="mnemis__item--yellow"></section>
+      <section class="mnemis__item--blue"></section>
     </main>
+
+    <div class="modal fade" id="modal-mensagem">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span>×</span>
+            </button>
+            <h4 class="modal-title">COMO JOGAR</h4>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>CLIQUE EM JOGAR.</li>
+              <li>
+                O MNEMIS CRIARÁ UMA SEQUÊNCIA E O JOGADOR DEVERÁ REPETI-LA.
+              </li>
+              <li>
+                AO INICIAR, ELE IRÁ PISCAR UMA DAS CORES, A QUAL O JOGADOR DEVE
+                CLICAR.
+              </li>
+              <li>
+                EM SEGUIDA, ELE IRÁ PISCAR A MESMA COR ANTERIOR E MAIS UMA. O
+                JOGADOR DEVE ENTÃO CLICAR EM AMBAS, DE ACORDO COM A SEQUÊNCIA
+                APRESENTADA.
+              </li>
+              <li>ISSO SE REPETIRÁ ATÉ QUE O JOGADOR ERRE A SEQUÊNCIA.</li>
+              <li>A CADA RODADA, O JOGADOR GANHA 1 PONTO.</li>
+              <li>O OBJETIVO É FAZER O MAIOR NÚMERO DE PONTOS.</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              FECHAR
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer class="footer">
       <p class="footer__paragraph">
         Desenvolvido por
@@ -62,7 +111,8 @@
         >
       </p>
     </footer>
-    <script type="text/javascript" src="./js/script.js"></script>
-    <script type="text/javascript" src="./js/loading-bar.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
